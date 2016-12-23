@@ -158,11 +158,7 @@ module Tilt
     # override render() may not support all features.
     def evaluate(scope, locals, &block)
       locals_keys = locals.keys
-      if SYMBOL_ARRAY_SORTABLE
-        locals_keys.sort!
-      else
-        locals_keys.sort!{|x, y| x.to_s <=> y.to_s}
-      end
+      locals_keys.sort!{|x, y| x.to_s <=> y.to_s}
       method = compiled_method(locals_keys)
       method.bind(scope).call(locals, &block)
     end
